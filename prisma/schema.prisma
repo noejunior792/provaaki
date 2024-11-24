@@ -101,7 +101,7 @@ model Test {
   disciplineId String   @db.ObjectId
   class       String
   periodType  PeriodType
-  periodNumber Int
+  periodNumber PeriodNumber
   year        Int
   imageUrl    String
   likes       Like[]
@@ -136,4 +136,15 @@ enum PeriodType {
   SEMESTER
   YEAR
   QUARTER
+}
+
+enum PeriodNumber {
+  First
+  Second
+  Third
+  Fourth
+  Fifth
+  Sixth
+  Seventh
+  Eighth
 }
