@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { GraduationCap, LogOut, User } from "lucide-react";
+import { LanguageToggle } from "./language-toggle";
 
 export function NavBar() {
   const { data: session } = useSession();
@@ -26,7 +27,7 @@ export function NavBar() {
 
         <div className="flex flex-1 items-center justify-end gap-4">
           <ModeToggle />
-          
+
           {session ? (
             <>
               <Link href="/feedback">
@@ -67,6 +68,8 @@ export function NavBar() {
                 <Button>Sign Up</Button>
               </Link>
             </>
+
+
           )}
         </div>
       </div>
