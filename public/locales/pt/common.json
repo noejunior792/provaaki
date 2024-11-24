@@ -1,0 +1,55 @@
+{
+  "nav": {
+    "home": "Início",
+    "login": "Entrar",
+    "register": "Cadastrar",
+    "admin": "Painel Admin"
+  },
+  "search": {
+    "placeholder": "Pesquisar provas...",
+    "institution": "Selecionar Instituição",
+    "button": "Buscar"
+  },
+  "admin": {
+    "title": "Painel Administrativo",
+    "tabs": {
+      "dashboard": "Painel",
+      "users": "Usuários",
+      "tests": "Provas"
+    },
+    "stats": {
+      "totalUsers": "Total de Usuários",
+      "totalTests": "Total de Provas",
+      "activeUsers": "Usuários Ativos"
+    },
+    "charts": {
+      "growth": "Visão Geral do Crescimento",
+      "users": "Usuários",
+      "tests": "Provas"
+    },
+    "users": {
+      "search": "Pesquisar usuários...",
+      "searchButton": "Buscar",
+      "addNew": "Adicionar Novo Usuário",
+      "columns": {
+        "name": "Nome",
+        "email": "Email",
+        "role": "Função",
+        "status": "Status",
+        "actions": "Ações"
+      }
+    },
+    "tests": {
+      "search": "Pesquisar provas...",
+      "searchButton": "Buscar",
+      "columns": {
+        "title": "Título",
+        "subject": "Disciplina",
+        "author": "Autor",
+        "status": "Status",
+        "date": "Data",
+        "actions": "Ações"
+      }
+    }
+  }
+}

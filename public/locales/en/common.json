@@ -1,0 +1,55 @@
+{
+  "nav": {
+    "home": "Home",
+    "login": "Login",
+    "register": "Sign Up",
+    "admin": "Admin Dashboard"
+  },
+  "search": {
+    "placeholder": "Search for tests...",
+    "institution": "Select Institution",
+    "button": "Search"
+  },
+  "admin": {
+    "title": "Admin Dashboard",
+    "tabs": {
+      "dashboard": "Dashboard",
+      "users": "Users",
+      "tests": "Tests"
+    },
+    "stats": {
+      "totalUsers": "Total Users",
+      "totalTests": "Total Tests",
+      "activeUsers": "Active Users"
+    },
+    "charts": {
+      "growth": "Growth Overview",
+      "users": "Users",
+      "tests": "Tests"
+    },
+    "users": {
+      "search": "Search users...",
+      "searchButton": "Search",
+      "addNew": "Add New User",
+      "columns": {
+        "name": "Name",
+        "email": "Email",
+        "role": "Role",
+        "status": "Status",
+        "actions": "Actions"
+      }
+    },
+    "tests": {
+      "search": "Search tests...",
+      "searchButton": "Search",
+      "columns": {
+        "title": "Title",
+        "subject": "Subject",
+        "author": "Author",
+        "status": "Status",
+        "date": "Date",
+        "actions": "Actions"
+      }
+    }
+  }
+}
