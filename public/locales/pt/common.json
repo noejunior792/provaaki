@@ -1,0 +1,147 @@
+{
+  "nav": {
+    "home": "Início",
+    "login": "Entrar",
+    "register": "Cadastrar",
+    "profile": "Perfil",
+    "feedback": "Feedback",
+    "logout": "Sair",
+    "dashboard": "Painel"
+  },
+  "hero": {
+    "title": "Aprenda Junto, Cresça Junto",
+    "subtitle": "Junte-se à nossa comunidade de estudantes e educadores compartilhando conhecimento através de testes práticos e soluções de exames.",
+    "getStarted": "Começar Agora",
+    "learnMore": "Saiba Mais"
+  },
+  "features": {
+    "title": "Por que Escolher o ExamHub?",
+    "subtitle": "Descubra as ferramentas e recursos que fazem nossa plataforma a escolha perfeita para seu sucesso acadêmico.",
+    "community": {
+      "title": "Comunidade Ativa",
+      "description": "Junte-se a milhares de estudantes ajudando uns aos outros a ter sucesso"
+    },
+    "practice": {
+      "title": "Testes Práticos",
+      "description": "Acesse uma vasta biblioteca de materiais de prática"
+    },
+    "solutions": {
+      "title": "Soluções Especializadas",
+      "description": "Aprenda com explicações detalhadas e soluções"
+    }
+  },
+  "testimonials": {
+    "title": "O que Nossos Usuários Dizem",
+    "subtitle": "Junte-se a milhares de estudantes que já melhoraram seu desempenho acadêmico com o ExamHub.",
+    "users": {
+      "sarah": {
+        "name": "Sarah Johnson",
+        "role": "Estudante de Medicina",
+        "content": "O ExamHub foi fundamental na minha preparação para o MCAT. A qualidade dos testes práticos e o suporte da comunidade são incomparáveis."
+      },
+      "michael": {
+        "name": "Michael Chen",
+        "role": "Estudante de Engenharia",
+        "content": "Os recursos colaborativos me ajudaram a me conectar com outros estudantes. Formamos um grupo de estudos que se reúne regularmente."
+      },
+      "emily": {
+        "name": "Emily Rodriguez",
+        "role": "Estudante do Ensino Médio",
+        "content": "Graças ao ExamHub, melhorei minha pontuação no SAT em 200 pontos. Os testes práticos foram incrivelmente úteis."
+      }
+    }
+  },
+  "cta": {
+    "title": "Pronto para se Destacar nos Estudos?",
+    "subtitle": "Junte-se à nossa comunidade hoje e leve seu desempenho acadêmico para o próximo nível.",
+    "button": "Começar Agora"
+  },
+  "footer": {
+    "about": {
+      "title": "Sobre Nós",
+      "description": "Criado por Noé Júnior na InnovaTech, dedicado a revolucionar a tecnologia educacional e tornar o aprendizado acessível a todos."
+    },
+    "contact": {
+      "title": "Contato",
+      "email": "contato@innovatech.com"
+    },
+    "links": {
+      "title": "Links Rápidos",
+      "about": "Sobre",
+      "privacy": "Política de Privacidade",
+      "terms": "Termos de Serviço"
+    },
+    "contributors": {
+      "title": "Contribuidores",
+      "creator": "Noé Júnior (Criador)",
+      "viewAll": "Ver Todos os Contribuidores",
+      "contribute": "Contribuir com o Projeto"
+    },
+    "copyright": "© 2024 InnovaTech. Todos os direitos reservados."
+  },
+  "dashboard": {
+    "shareTest": "Compartilhe uma prova...",
+    "search": {
+      "placeholder": "Pesquisar provas...",
+      "institution": "Selecionar Instituição",
+      "button": "Buscar"
+    }
+  },
+  "profile": {
+    "tabs": {
+      "published": "Provas Publicadas",
+      "liked": "Provas Curtidas"
+    },
+    "deleteAccount": {
+      "button": "Excluir Conta",
+      "title": "Você tem certeza absoluta?",
+      "description": "Esta ação não pode ser desfeita. Isso excluirá permanentemente sua conta e removerá todos os seus dados de nossos servidores.",
+      "cancel": "Cancelar",
+      "confirm": "Excluir Conta"
+    },
+    "createTest": "Criar Prova"
+  },
+  "feedback": {
+    "title": "Valorizamos seu Feedback",
+    "subtitle": "Ajude-nos a melhorar sua experiência compartilhando suas opiniões",
+    "form": {
+      "category": {
+        "label": "Categoria do Feedback",
+        "placeholder": "Selecione uma categoria",
+        "options": {
+          "general": "Feedback Geral",
+          "bug": "Reportar Erro",
+          "feature": "Sugestão de Recurso",
+          "content": "Qualidade do Conteúdo",
+          "ux": "Experiência do Usuário"
+        }
+      },
+      "rating": {
+        "label": "Avaliação",
+        "placeholder": "Avalie sua experiência"
+      },
+      "feedback": {
+        "label": "Seu Feedback",
+        "placeholder": "Compartilhe seus pensamentos, sugestões ou reporte problemas..."
+      },
+      "email": {
+        "label": "Email (opcional)",
+        "placeholder": "seu@email.com",
+        "hint": "Forneça seu email se quiser que entremos em contato"
+      },
+      "submit": "Enviar Feedback"
+    }
+  },
+  "errors": {
+    "404": {
+      "title": "404",
+      "message": "Não há provas aqui, você pode retornar à rota correta",
+      "button": "Voltar ao Início"
+    },
+    "unauthorized": {
+      "title": "Acesso Negado",
+      "message": "Por favor, faça login para acessar esta página",
+      "button": "Fazer Login"
+    }
+  }
+}

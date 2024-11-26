@@ -1,0 +1,106 @@
+import Link from "next/link";
+import { Github, Linkedin, Mail } from "lucide-react";
+
+export function Footer() {
+  return (
+    <footer className="border-t bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <div className="container py-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div>
+            <h3 className="font-semibold mb-4">About Us</h3>
+            <p className="text-sm text-muted-foreground">
+              Created by Noé Júnior , dedicated to revolutionizing
+              educational technology and making learning accessible to everyone.
+            </p>
+          </div>
+          <div>
+            <h3 className="font-semibold mb-4">Contact</h3>
+            <div className="space-y-2">
+              <a
+                href="mailto:contact@innovatech.com"
+                className="text-sm text-muted-foreground hover:text-primary flex items-center gap-2"
+              >
+                <Mail className="h-4 w-4" />
+                noedombaxe@gmail.com
+              </a>
+              <a
+                href="https://github.com/noejunior792"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm text-muted-foreground hover:text-primary flex items-center gap-2"
+              >
+                <Github className="h-4 w-4" />
+                GitHub
+              </a>
+              <a
+                href="https://www.linkedin.com/in/noejunior299/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm text-muted-foreground hover:text-primary flex items-center gap-2"
+              >
+                <Linkedin className="h-4 w-4" />
+                LinkedIn
+              </a>
+            </div>
+          </div>
+          <div>
+            <h3 className="font-semibold mb-4">Quick Links</h3>
+            <div className="space-y-2">
+              <Link
+                href="/about"
+                className="text-sm text-muted-foreground hover:text-primary block"
+              >
+                Sobre
+              </Link>
+              <Link
+                href="/privacy"
+                className="text-sm text-muted-foreground hover:text-primary block"
+              >
+                Políticas de Privacidade
+              </Link>
+              <Link
+                href="/terms"
+                className="text-sm text-muted-foreground hover:text-primary block"
+              >
+                Termos e  Serviços
+              </Link>
+            </div>
+          </div>
+          <div>
+            <h3 className="font-semibold mb-4">Contributors</h3>
+            <div className="space-y-2">
+              <a
+                href="https://github.com/noejunior"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm text-muted-foreground hover:text-primary block"
+              >
+                Noé Júnior (Creator)
+              </a>
+              <a
+                href="https://github.com/innovatech/exam-community/graphs/contributors"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm text-muted-foreground hover:text-primary block"
+              >
+                View All Contributors
+              </a>
+              <a
+                href="https://github.com/innovatech/exam-community"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm text-muted-foreground hover:text-primary flex items-center gap-2"
+              >
+                <Github className="h-4 w-4" />
+                Contribute to Project
+              </a>
+            </div>
+          </div>
+        </div>
+        <div className="border-t mt-8 pt-8 text-center text-sm text-muted-foreground">
+          <p>© 2024 Noé Júnior. Todos Direitos Reservados.</p>
+        </div>
+      </div>
+    </footer>
+  );
+}

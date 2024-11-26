@@ -1,0 +1,147 @@
+{
+  "nav": {
+    "home": "Home",
+    "login": "Login",
+    "register": "Sign Up",
+    "profile": "Profile",
+    "feedback": "Feedback",
+    "logout": "Logout",
+    "dashboard": "Dashboard"
+  },
+  "hero": {
+    "title": "Learn Together, Grow Together",
+    "subtitle": "Join our community of students and educators sharing knowledge through practice tests and exam solutions.",
+    "getStarted": "Get Started",
+    "learnMore": "Learn More"
+  },
+  "features": {
+    "title": "Why Choose ExamHub?",
+    "subtitle": "Discover the tools and features that make our platform the perfect choice for your academic success.",
+    "community": {
+      "title": "Active Community",
+      "description": "Join thousands of students helping each other succeed"
+    },
+    "practice": {
+      "title": "Practice Tests",
+      "description": "Access a vast library of practice materials"
+    },
+    "solutions": {
+      "title": "Expert Solutions",
+      "description": "Learn from detailed explanations and solutions"
+    }
+  },
+  "testimonials": {
+    "title": "What Our Users Say",
+    "subtitle": "Join thousands of students who have already improved their academic performance with ExamHub.",
+    "users": {
+      "sarah": {
+        "name": "Sarah Johnson",
+        "role": "Medical Student",
+        "content": "ExamHub has been instrumental in my MCAT preparation. The quality of practice tests and community support is unmatched."
+      },
+      "michael": {
+        "name": "Michael Chen",
+        "role": "Engineering Student",
+        "content": "The collaborative features helped me connect with other students. We've formed a study group that meets regularly."
+      },
+      "emily": {
+        "name": "Emily Rodriguez",
+        "role": "High School Senior",
+        "content": "Thanks to ExamHub, I improved my SAT score by 200 points. The practice tests were incredibly helpful."
+      }
+    }
+  },
+  "cta": {
+    "title": "Ready to Excel in Your Studies?",
+    "subtitle": "Join our community today and take your academic performance to the next level.",
+    "button": "Get Started Now"
+  },
+  "footer": {
+    "about": {
+      "title": "About Us",
+      "description": "Created by Noé Júnior at InnovaTech, dedicated to revolutionizing educational technology and making learning accessible to everyone."
+    },
+    "contact": {
+      "title": "Contact",
+      "email": "contact@innovatech.com"
+    },
+    "links": {
+      "title": "Quick Links",
+      "about": "About",
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Service"
+    },
+    "contributors": {
+      "title": "Contributors",
+      "creator": "Noé Júnior (Creator)",
+      "viewAll": "View All Contributors",
+      "contribute": "Contribute to Project"
+    },
+    "copyright": "© 2024 InnovaTech. All rights reserved."
+  },
+  "dashboard": {
+    "shareTest": "Share a test...",
+    "search": {
+      "placeholder": "Search for tests...",
+      "institution": "Select Institution",
+      "button": "Search"
+    }
+  },
+  "profile": {
+    "tabs": {
+      "published": "Published Tests",
+      "liked": "Liked Tests"
+    },
+    "deleteAccount": {
+      "button": "Delete Account",
+      "title": "Are you absolutely sure?",
+      "description": "This action cannot be undone. This will permanently delete your account and remove all your data from our servers.",
+      "cancel": "Cancel",
+      "confirm": "Delete Account"
+    },
+    "createTest": "Create Test"
+  },
+  "feedback": {
+    "title": "We Value Your Feedback",
+    "subtitle": "Help us improve your experience by sharing your thoughts",
+    "form": {
+      "category": {
+        "label": "Feedback Category",
+        "placeholder": "Select a category",
+        "options": {
+          "general": "General Feedback",
+          "bug": "Bug Report",
+          "feature": "Feature Request",
+          "content": "Content Quality",
+          "ux": "User Experience"
+        }
+      },
+      "rating": {
+        "label": "Rating",
+        "placeholder": "Rate your experience"
+      },
+      "feedback": {
+        "label": "Your Feedback",
+        "placeholder": "Share your thoughts, suggestions, or report issues..."
+      },
+      "email": {
+        "label": "Email (optional)",
+        "placeholder": "your@email.com",
+        "hint": "Provide your email if you'd like us to follow up with you"
+      },
+      "submit": "Submit Feedback"
+    }
+  },
+  "errors": {
+    "404": {
+      "title": "404",
+      "message": "There are no tests here, you can return to the right route",
+      "button": "Return Home"
+    },
+    "unauthorized": {
+      "title": "Access Denied",
+      "message": "Please log in to access this page",
+      "button": "Log In"
+    }
+  }
+}
