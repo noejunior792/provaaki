@@ -3,6 +3,8 @@ import { PrismaAdapter } from "@auth/prisma-adapter";
 import GoogleProvider from "next-auth/providers/google";
 import { prisma } from "@/lib/prisma";
 
+export const dynamic = 'force-dynamic';
+
 export const {
   handlers: { GET, POST },
   auth,
@@ -20,12 +22,22 @@ export const {
     signIn: "/login",
     error: "/auth/error",
   },
+  session: {
+    strategy: "jwt",
+  },
   callbacks: {
-    async session({ session, user }) {
+    async session({ session, token }) {
       if (session.user) {
-        session.user.id = user.id;
+        session.user.id = token.sub!;
       }
       return session;
+    },
+    async jwt({ token, user, account }) {
+      if (account && user) {
+        token.accessToken = account.access_token;
+        token.id = user.id;
+      }
+      return token;
     },
   },
 });

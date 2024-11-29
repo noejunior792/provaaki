@@ -1,4 +1,4 @@
-"use client";
+"use client"
 
 import { useState } from "react";
 import { motion } from "framer-motion";
@@ -18,10 +18,57 @@ import { ImagePlus, Upload } from "lucide-react";
 
 export default function CreateTestPage() {
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
+  const [formData, setFormData] = useState({
+    title: "",
+    subject: "",
+    description: "",
+    institutionId: "",
+    courseId: "",
+    disciplineId: "",
+    periodType: "SEMESTER",
+    periodNumber: 1,
+    year: new Date().getFullYear(),
+  });
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       setSelectedFiles(Array.from(e.target.files));
+    }
+  };
+
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { id, value } = e.target;
+    setFormData((prev) => ({ ...prev, [id]: value }));
+  };
+
+  const handleSelectChange = (key: string, value: string) => {
+    setFormData((prev) => ({ ...prev, [key]: value }));
+  };
+
+  const handleSubmit = async () => {
+    const payload = {
+      ...formData,
+      files: selectedFiles,
+    };
+
+    try {
+      const response = await fetch("/api/tests", {
+        method: "POST",
+        body: JSON.stringify(payload),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to create test");
+      }
+
+      alert("Test created successfully!");
+    } catch (error) {
+      alert("An error occurred while creating the test.");
     }
   };
 
@@ -38,12 +85,19 @@ export default function CreateTestPage() {
           <div className="space-y-6">
             <div className="space-y-2">
               <Label htmlFor="title">Title</Label>
-              <Input id="title" placeholder="Enter test title" />
+              <Input
+                id="title"
+                placeholder="Enter test title"
+                value={formData.title}
+                onChange={handleInputChange}
+              />
             </div>
 
             <div className="space-y-2">
               <Label htmlFor="subject">Subject</Label>
-              <Select>
+              <Select
+                onValueChange={(value) => handleSelectChange("subject", value)}
+              >
                 <SelectTrigger>
                   <SelectValue placeholder="Select subject" />
                 </SelectTrigger>
@@ -62,6 +116,8 @@ export default function CreateTestPage() {
                 id="description"
                 placeholder="Provide a description of the test"
                 rows={4}
+                value={formData.description}
+                onChange={handleInputChange}
               />
             </div>
 
@@ -89,25 +145,9 @@ export default function CreateTestPage() {
                   </span>
                 </Label>
               </div>
-              {selectedFiles.length > 0 && (
-                <div className="mt-4">
-                  <p className="text-sm font-medium mb-2">Selected files:</p>
-                  <ul className="space-y-2">
-                    {selectedFiles.map((file, index) => (
-                      <li
-                        key={index}
-                        className="text-sm text-muted-foreground flex items-center gap-2"
-                      >
-                        <ImagePlus className="h-4 w-4" />
-                        {file.name}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
             </div>
 
-            <Button className="w-full">
+            <Button onClick={handleSubmit} className="w-full">
               <Upload className="mr-2 h-4 w-4" />
               Publish Test
             </Button>
