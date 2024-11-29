@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -11,9 +11,31 @@ import { TestCard } from "@/components/test-card";
 import { SearchBar } from "@/components/search-bar";
 import { useSession } from "next-auth/react";
 
+export type Test = {
+  id: string;
+  title: string;
+  institution?: string | null;
+  course?: string | null;
+  imageUrl?: string | null;
+  authorName?: string | null;
+  authorImage?: string | null;
+  createdAt: Date;
+};
+
 export default function DashboardPage() {
   const { data: session } = useSession();
   const [isCreateTestOpen, setIsCreateTestOpen] = useState(false);
+  const [tests, setTests] = useState<Test[]>([]);
+
+  useEffect(() => {
+    async function fetchTests() {
+      const response = await fetch("/api/tests/recent");
+      const data = await response.json();
+      setTests(data);
+    }
+
+    fetchTests();
+  }, []);
 
   return (
     <div className="container max-w-5xl mx-auto py-8 px-4">
@@ -27,7 +49,7 @@ export default function DashboardPage() {
             <AvatarImage src={session?.user?.image || ""} />
             <AvatarFallback>{session?.user?.name?.[0]}</AvatarFallback>
           </Avatar>
-          <Button 
+          <Button
             className="flex-1 justify-start text-muted-foreground font-normal hover:text-foreground"
             variant="outline"
             onClick={() => setIsCreateTestOpen(true)}
@@ -39,28 +61,22 @@ export default function DashboardPage() {
       </Card>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <TestCard
-          title="Calculus Final"
-          institution="MIT"
-          course="Mathematics"
-          imageUrl="https://images.unsplash.com/photo-1635070041078-e363dbe005cb"
-          authorName="Jane Smith"
-          authorImage="https://images.unsplash.com/photo-1494790108377-be9c29b29330"
-          createdAt={new Date().toISOString()}
-        />
-        <TestCard
-          title="Physics Midterm"
-          institution="Stanford"
-          course="Physics"
-          imageUrl="https://images.unsplash.com/photo-1636466497217-26a8cbeaf0aa"
-          authorName="John Doe"
-          authorImage="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d"
-          createdAt={new Date().toISOString()}
-        />
+        {tests.map((test) => (
+          <TestCard
+            key={test.id}
+            title={test.title}
+            institution={test.institution || "Unknown Institution"}
+            course={test.course || "Unknown Course"}
+            imageUrl={test.imageUrl || "/placeholder.png"}
+            authorName={test.authorName || "Unknown Author"}
+            authorImage={test.authorImage || "/placeholder-avatar.png"}
+            createdAt={test.createdAt}
+          />
+        ))}
       </div>
 
-      <CreateTestDialog 
-        open={isCreateTestOpen} 
+      <CreateTestDialog
+        open={isCreateTestOpen}
         onOpenChange={setIsCreateTestOpen}
       />
     </div>

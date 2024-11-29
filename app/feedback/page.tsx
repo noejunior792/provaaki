@@ -1,4 +1,4 @@
-"use client";
+"use client"
 
 import { useState } from "react";
 import { motion } from "framer-motion";
@@ -15,7 +15,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
-import { MessageSquare, Star } from "lucide-react";
+import { MessageSquare } from "lucide-react";
 
 export default function FeedbackPage() {
   const { toast } = useToast();
@@ -29,19 +29,41 @@ export default function FeedbackPage() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    try {
+      const response = await fetch("/api/feedback", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          category,
+          rating,
+          feedback,
+          email,
+        }),
+      });
 
-    toast({
-      title: "Feedback Submitted",
-      description: "Thank you for helping us improve our platform!",
-    });
+      const data = await response.json();
 
-    setRating("");
-    setFeedback("");
-    setEmail("");
-    setCategory("");
-    setIsSubmitting(false);
+      toast({
+        title: "Feedback Enviado",
+        description: data.message || "Obrigado por ajudar a melhorar nossa plataforma!",
+      });
+
+      setRating("");
+      setFeedback("");
+      setEmail("");
+      setCategory("");
+    } catch (error) {
+      console.error(error);
+      toast({
+        title: "Erro",
+        description: "Houve um erro ao enviar seu feedback. Tente novamente.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
