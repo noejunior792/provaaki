@@ -11,10 +11,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useTranslation } from "react-i18next";
 
 export function SearchBar() {
-  const { t } = useTranslation();
   const [searchQuery, setSearchQuery] = useState("");
   const [institution, setInstitution] = useState("");
 
@@ -29,14 +27,14 @@ export function SearchBar() {
       <div className="flex gap-4 p-4 bg-card rounded-lg shadow-sm">
         <Input
           type="text"
-          placeholder={t('search.placeholder')}
+          placeholder="Search..." // Texto fixo para o campo de busca
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           className="flex-1"
         />
         <Select value={institution} onValueChange={setInstitution}>
           <SelectTrigger className="w-[200px]">
-            <SelectValue placeholder={t('search.institution')} />
+            <SelectValue placeholder="Select institution" /> {/* Texto fixo para o campo de instituição */}
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="university1">University 1</SelectItem>
@@ -46,7 +44,7 @@ export function SearchBar() {
         </Select>
         <Button type="submit">
           <Search className="mr-2 h-4 w-4" />
-          {t('search.button')}
+          Search {/* Texto fixo para o botão */}
         </Button>
       </div>
     </form>

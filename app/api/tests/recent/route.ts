@@ -1,10 +1,12 @@
 import { PrismaClient } from "@prisma/client";
-import { NextApiRequest, NextApiResponse } from "next";
+import { NextRequest, NextResponse } from "next/server";
 
 const prisma = new PrismaClient();
 
-export async function GET(req: NextApiRequest, res: NextApiResponse) {
+// Definindo a função GET para buscar os testes
+export async function GET(req: NextRequest) {
   try {
+    // Buscando os 10 testes mais recentes, ordenados pela data de criação
     const tests = await prisma.test.findMany({
       orderBy: { createdAt: "desc" },
       take: 10,
@@ -12,18 +14,18 @@ export async function GET(req: NextApiRequest, res: NextApiResponse) {
 
     console.log("Fetched tests:", tests);
 
-    if (!tests) {
-      return res.status(404).json({ error: "No tests found" });
+    if (!tests || tests.length === 0) {
+      return NextResponse.json({ error: "No tests found" }, { status: 404 });
     }
 
-    res.status(200).json(tests);
+    return NextResponse.json(tests, { status: 200 });
   } catch (error) {
     console.error("Error fetching tests:", error);
-    res.status(500).json({ error: "Failed to fetch tests" });
+    return NextResponse.json({ error: "Failed to fetch tests" }, { status: 500 });
   }
 }
 
-export function OPTIONS(req: NextApiRequest, res: NextApiResponse) {
-  res.setHeader("Allow", ["GET"]);
-  res.status(200).end();
+// Definindo a função OPTIONS para definir os métodos permitidos na rota
+export async function OPTIONS(req: NextRequest) {
+  return NextResponse.json({}, { status: 200, headers: { Allow: "GET" } });
 }

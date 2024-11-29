@@ -27,10 +27,7 @@ export function Hero() {
           </p>
           <div className="flex justify-center gap-4">
             <Button asChild size="lg">
-              <Link href="/register">Get Started</Link>
-            </Button>
-            <Button variant="outline" size="lg" asChild>
-              <Link href="/about">Learn More</Link>
+              <Link href="/register">Começe agora</Link>
             </Button>
           </div>
         </motion.div>

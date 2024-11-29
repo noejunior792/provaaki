@@ -21,14 +21,65 @@ interface CreateTestDialogProps {
 
 export function CreateTestDialog({ open, onOpenChange }: CreateTestDialogProps) {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [formData, setFormData] = useState({
+    institution: "",
+    course: "",
+    discipline: "",
+    class: "",
+    periodType: "SEMESTER",
+    periodNumber: 1,
+    year: new Date().getFullYear(),
+  });
   const [isLoading, setIsLoading] = useState(false);
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      setSelectedFile(e.target.files[0]);
+    }
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { id, value } = e.target;
+    setFormData((prev) => ({ ...prev, [id]: value }));
+  };
+
+  const handleSelectChange = (key: string, value: string) => {
+    setFormData((prev) => ({ ...prev, [key]: value }));
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
-    // TODO: Implement test creation
-    setIsLoading(false);
-    onOpenChange(false);
+
+    const payload = {
+      ...formData,
+      file: selectedFile,
+    };
+
+    console.log("Form submission data:", payload);
+
+    try {
+
+      const response = await fetch("http://localhost:3000/api/tests", {
+        method: "POST",
+        body: JSON.stringify(payload),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to create test");
+      }
+
+      alert("Test created successfully!");
+    } catch (error) {
+      console.error("Error creating test:", error);
+      alert("An error occurred while creating the test.");
+    } finally {
+      setIsLoading(false);
+      onOpenChange(false);
+    }
   };
 
   return (
@@ -40,7 +91,9 @@ export function CreateTestDialog({ open, onOpenChange }: CreateTestDialogProps) 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="space-y-2">
             <Label htmlFor="institution">Institution</Label>
-            <Select>
+            <Select
+              onValueChange={(value) => handleSelectChange("institution", value)}
+            >
               <SelectTrigger>
                 <SelectValue placeholder="Select institution" />
               </SelectTrigger>
@@ -53,7 +106,9 @@ export function CreateTestDialog({ open, onOpenChange }: CreateTestDialogProps) 
 
           <div className="space-y-2">
             <Label htmlFor="course">Course</Label>
-            <Select>
+            <Select
+              onValueChange={(value) => handleSelectChange("course", value)}
+            >
               <SelectTrigger>
                 <SelectValue placeholder="Select course" />
               </SelectTrigger>
@@ -66,7 +121,9 @@ export function CreateTestDialog({ open, onOpenChange }: CreateTestDialogProps) 
 
           <div className="space-y-2">
             <Label htmlFor="discipline">Discipline</Label>
-            <Select>
+            <Select
+              onValueChange={(value) => handleSelectChange("discipline", value)}
+            >
               <SelectTrigger>
                 <SelectValue placeholder="Select discipline" />
               </SelectTrigger>
@@ -79,13 +136,20 @@ export function CreateTestDialog({ open, onOpenChange }: CreateTestDialogProps) 
 
           <div className="space-y-2">
             <Label htmlFor="class">Class</Label>
-            <Input id="class" placeholder="e.g., A, B, C" />
+            <Input
+              id="class"
+              placeholder="e.g., A, B, C"
+              value={formData.class}
+              onChange={handleInputChange}
+            />
           </div>
 
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
               <Label htmlFor="periodType">Period Type</Label>
-              <Select>
+              <Select
+                onValueChange={(value) => handleSelectChange("periodType", value)}
+              >
                 <SelectTrigger>
                   <SelectValue placeholder="Select type" />
                 </SelectTrigger>
@@ -99,23 +163,27 @@ export function CreateTestDialog({ open, onOpenChange }: CreateTestDialogProps) 
 
             <div className="space-y-2">
               <Label htmlFor="periodNumber">Period Number</Label>
-              <Input 
-                id="periodNumber" 
-                type="number" 
-                min="1" 
-                placeholder="e.g., 1, 2, 3" 
+              <Input
+                id="periodNumber"
+                type="number"
+                min="1"
+                value={formData.periodNumber}
+                onChange={handleInputChange}
+                placeholder="e.g., 1, 2, 3"
               />
             </div>
           </div>
 
           <div className="space-y-2">
             <Label htmlFor="year">Year</Label>
-            <Input 
-              id="year" 
-              type="number" 
-              min="1900" 
-              max={new Date().getFullYear()} 
-              placeholder={new Date().getFullYear().toString()} 
+            <Input
+              id="year"
+              type="number"
+              min="1900"
+              max={new Date().getFullYear()}
+              value={formData.year}
+              onChange={handleInputChange}
+              placeholder={new Date().getFullYear().toString()}
             />
           </div>
 
@@ -127,7 +195,7 @@ export function CreateTestDialog({ open, onOpenChange }: CreateTestDialogProps) 
                 accept="image/*"
                 className="hidden"
                 id="file-upload"
-                onChange={(e) => setSelectedFile(e.target.files?.[0] || null)}
+                onChange={handleFileChange}
               />
               <Label
                 htmlFor="file-upload"

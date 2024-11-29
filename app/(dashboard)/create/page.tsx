@@ -29,6 +29,7 @@ export default function CreateTestPage() {
     periodNumber: 1,
     year: new Date().getFullYear(),
   });
+  const [isLoading, setIsLoading] = useState(false); 
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
@@ -54,6 +55,8 @@ export default function CreateTestPage() {
     };
 
     try {
+      setIsLoading(true); 
+      console.log("Enviando dados:", payload); 
       const response = await fetch("/api/tests", {
         method: "POST",
         body: JSON.stringify(payload),
@@ -66,9 +69,13 @@ export default function CreateTestPage() {
         throw new Error("Failed to create test");
       }
 
+      console.log("Teste criado com sucesso");
       alert("Test created successfully!");
     } catch (error) {
+      console.error("Erro ao criar o teste:", error);
       alert("An error occurred while creating the test.");
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -147,9 +154,15 @@ export default function CreateTestPage() {
               </div>
             </div>
 
-            <Button onClick={handleSubmit} className="w-full">
-              <Upload className="mr-2 h-4 w-4" />
-              Publish Test
+            <Button onClick={handleSubmit} className="w-full" disabled={isLoading}>
+              {isLoading ? (
+                <span>Loading...</span>
+              ) : (
+                <>
+                  <Upload className="mr-2 h-4 w-4" />
+                  Publish Test
+                </>
+              )}
             </Button>
           </div>
         </Card>
