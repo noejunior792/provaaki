@@ -30,12 +30,16 @@ export function TestCard({
   const [isViewerOpen, setIsViewerOpen] = useState(false);
 
   const handleDownload = () => {
-    const link = document.createElement('a');
-    link.href = imageUrl;
-    link.download = `${title}.jpg`;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    try {
+      const link = document.createElement("a");
+      link.href = imageUrl;
+      link.download = `${title.replace(/\s+/g, "_")}.jpg`; // Nome do arquivo formatado
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } catch (error) {
+      console.error("Download failed:", error);
+    }
   };
 
   return (
@@ -45,7 +49,7 @@ export function TestCard({
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <Card className="overflow-hidden">
+        <Card className="overflow-hidden shadow-md">
           <div
             className="relative cursor-pointer aspect-video"
             onClick={() => setIsViewerOpen(true)}
@@ -64,12 +68,18 @@ export function TestCard({
             <div className="flex items-center gap-3 mb-3">
               <Avatar>
                 <AvatarImage src={authorImage} />
-                <AvatarFallback>{authorName[0]}</AvatarFallback>
+                <AvatarFallback>
+                  {authorName ? authorName.charAt(0).toUpperCase() : "?"}
+                </AvatarFallback>
               </Avatar>
               <div>
-                <p className="font-semibold">{authorName}</p>
+                <p className="font-semibold">{authorName || "Unknown Author"}</p>
                 <p className="text-sm text-muted-foreground">
-                  {new Date(createdAt).toLocaleDateString()}
+                  {new Date(createdAt).toLocaleDateString("en-US", {
+                    year: "numeric",
+                    month: "short",
+                    day: "numeric",
+                  })}
                 </p>
               </div>
             </div>
@@ -79,7 +89,7 @@ export function TestCard({
               {institution} · {course}
             </p>
 
-            <div className="flex gap-2">
+            <div className="flex flex-wrap gap-2">
               <Button variant="ghost" size="sm">
                 <Heart className="h-4 w-4 mr-1" />
                 Like
@@ -101,11 +111,13 @@ export function TestCard({
         </Card>
       </motion.div>
 
-      <TestViewer
-        imageUrl={imageUrl}
-        isOpen={isViewerOpen}
-        onClose={() => setIsViewerOpen(false)}
-      />
+      {isViewerOpen && (
+        <TestViewer
+          imageUrl={imageUrl}
+          isOpen={isViewerOpen}
+          onClose={() => setIsViewerOpen(false)}
+        />
+      )}
     </>
   );
 }

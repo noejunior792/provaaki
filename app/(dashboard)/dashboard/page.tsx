@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -19,19 +18,34 @@ export type Test = {
   imageUrl?: string | null;
   authorName?: string | null;
   authorImage?: string | null;
-  createdAt: string ;
+  createdAt: string;
 };
 
 export default function DashboardPage() {
   const { data: session } = useSession();
   const [isCreateTestOpen, setIsCreateTestOpen] = useState(false);
   const [tests, setTests] = useState<Test[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     async function fetchTests() {
-      const response = await fetch("/api/tests/recent");
-      const data = await response.json();
-      setTests(data);
+      setLoading(true);
+      setError(null);
+      try {
+        const response = await fetch("/api/tests/recent");
+
+        if (!response.ok) {
+          throw new Error(`Error: ${response.statusText}`);
+        }
+
+        const data = await response.json();
+        setTests(data);
+      } catch (err: any) {
+        setError(err.message || "An error occurred while fetching tests.");
+      } finally {
+        setLoading(false);
+      }
     }
 
     fetchTests();
@@ -60,20 +74,25 @@ export default function DashboardPage() {
         </div>
       </Card>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {tests.map((test) => (
-          <TestCard
-            key={test.id}
-            title={test.title}
-            institution={test.institution || "Unknown Institution"}
-            course={test.course || "Unknown Course"}
-            imageUrl={test.imageUrl || "/placeholder.png"}
-            authorName={test.authorName || "Unknown Author"}
-            authorImage={test.authorImage || "/placeholder-avatar.png"}
-            createdAt={test.createdAt}
-          />
-        ))}
-      </div>
+      {loading && <p>Loading tests...</p>}
+      {error && <p className="text-red-500">{error}</p>}
+
+      {!loading && !error && (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {tests.map((test) => (
+            <TestCard
+              key={test.id}
+              title={test.title}
+              institution={test.institution || "Unknown Institution"}
+              course={test.course || "Unknown Course"}
+              imageUrl={test.imageUrl || "/placeholder.png"}
+              authorName={test.authorName || "Unknown Author"}
+              authorImage={test.authorImage || "/placeholder-avatar.png"}
+              createdAt={test.createdAt}
+            />
+          ))}
+        </div>
+      )}
 
       <CreateTestDialog
         open={isCreateTestOpen}
