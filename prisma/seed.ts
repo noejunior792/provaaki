@@ -5,7 +5,6 @@ const prisma = new PrismaClient();
 async function main() {
   console.log('Seeding database...');
 
-  // Create institutions
   const institution = await prisma.institution.create({
     data: {
       name: 'Example University',
