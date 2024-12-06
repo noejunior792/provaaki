@@ -74,7 +74,7 @@ export default function FeedbackPage() {
         transition={{ duration: 0.5 }}
       >
         <Card className="p-6">
-          <div className="text-center mb-6">
+          <div className="text-left mb-6">
             <h1 className="text-3xl font-bold mb-2">We Value Your Feedback</h1>
             <p className="text-muted-foreground">
               Help us improve your experience by sharing your thoughts

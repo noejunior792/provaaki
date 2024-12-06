@@ -189,7 +189,7 @@ export function CreateTestDialog({ open, onOpenChange }: CreateTestDialogProps) 
 
           <div className="space-y-2">
             <Label>Test Image</Label>
-            <div className="border-2 border-dashed rounded-lg p-4 text-center">
+            <div className="border-2 border-dashed rounded-lg p-4 text-left">
               <Input
                 type="file"
                 accept="image/*"
@@ -199,7 +199,7 @@ export function CreateTestDialog({ open, onOpenChange }: CreateTestDialogProps) 
               />
               <Label
                 htmlFor="file-upload"
-                className="cursor-pointer flex flex-col items-center"
+                className="cursor-pointer flex flex-col items-left"
               >
                 <ImagePlus className="h-8 w-8 text-muted-foreground mb-2" />
                 <span className="text-sm font-medium">

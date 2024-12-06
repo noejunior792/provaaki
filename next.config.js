@@ -1,10 +1,16 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
-  eslint: {
-    ignoreDuringBuilds: true,
+  output: 'standalone',
+  images: {
+    domains: ['images.unsplash.com'],
   },
-  images: { unoptimized: true },
-};
+  experimental: {
+    serverActions: true,
+  },
+  webpack: (config) => {
+    config.optimization.minimize = true;
+    return config;
+  },
+}
 
-module.exports = nextConfig;
+module.exports = nextConfig

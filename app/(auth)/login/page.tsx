@@ -7,14 +7,14 @@ import { Card } from "@/components/ui/card";
 
 export default function LoginPage() {
   return (
-    <div className="min-h-screen flex items-center justify-center">
+    <div className="min-h-screen flex items-left justify-left">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
         <Card className="p-8 w-[400px]">
-          <div className="text-center mb-8">
+          <div className="text-left mb-8">
             <h1 className="text-2xl font-bold mb-2">Welcome to ExamHub</h1>
             <p className="text-muted-foreground">Sign in to continue</p>
           </div>

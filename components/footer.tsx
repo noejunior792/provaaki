@@ -18,7 +18,7 @@ export function Footer() {
             <div className="space-y-2">
               <a
                 href="mailto:contact@innovatech.com"
-                className="text-sm text-muted-foreground hover:text-primary flex items-center gap-2"
+                className="text-sm text-muted-foreground hover:text-primary flex items-left gap-2"
               >
                 <Mail className="h-4 w-4" />
                 contact@innovatech.com
@@ -27,7 +27,7 @@ export function Footer() {
                 href="https://github.com/innovatech"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-sm text-muted-foreground hover:text-primary flex items-center gap-2"
+                className="text-sm text-muted-foreground hover:text-primary flex items-left gap-2"
               >
                 <Github className="h-4 w-4" />
                 GitHub
@@ -36,7 +36,7 @@ export function Footer() {
                 href="https://linkedin.com/company/innovatech"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-sm text-muted-foreground hover:text-primary flex items-center gap-2"
+                className="text-sm text-muted-foreground hover:text-primary flex items-left gap-2"
               >
                 <Linkedin className="h-4 w-4" />
                 LinkedIn
@@ -67,7 +67,7 @@ export function Footer() {
             </div>
           </div>
         </div>
-        <div className="border-t mt-8 pt-8 text-center text-sm text-muted-foreground">
+        <div className="border-t mt-8 pt-8 text-left text-sm text-muted-foreground">
           <p>© 2024 InnovaTech. All rights reserved.</p>
         </div>
       </div>

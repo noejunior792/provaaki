@@ -50,29 +50,29 @@ export default function ProfilePage() {
         transition={{ duration: 0.5 }}
       >
         <Card className="p-6 mb-6">
-          <div className="flex flex-col md:flex-row gap-6 items-center md:items-start">
+          <div className="flex flex-col md:flex-row gap-6 items-left md:items-start">
             <Avatar className="h-32 w-32">
               <AvatarImage src={session?.user?.image || ""} />
               <AvatarFallback>{session?.user?.name?.[0]}</AvatarFallback>
             </Avatar>
-            <div className="flex-1 text-center md:text-left">
+            <div className="flex-1 text-left md:text-left">
               <h1 className="text-3xl font-bold mb-2">{session?.user?.name}</h1>
               <p className="text-muted-foreground mb-4">{session?.user?.email}</p>
-              <div className="flex flex-wrap gap-4 justify-center md:justify-start mb-4">
-                <div className="flex items-center gap-2 text-sm">
+              <div className="flex flex-wrap gap-4 justify-left md:justify-start mb-4">
+                <div className="flex items-left gap-2 text-sm">
                   <MapPin className="h-4 w-4" />
                   Location
                 </div>
-                <div className="flex items-center gap-2 text-sm">
+                <div className="flex items-left gap-2 text-sm">
                   <Calendar className="h-4 w-4" />
                   Joined {new Date().toLocaleDateString()}
                 </div>
-                <div className="flex items-center gap-2 text-sm">
+                <div className="flex items-left gap-2 text-sm">
                   <Mail className="h-4 w-4" />
                   {session?.user?.email}
                 </div>
               </div>
-              <div className="flex flex-wrap gap-4 justify-center md:justify-start">
+              <div className="flex flex-wrap gap-4 justify-left md:justify-start">
                 <Button onClick={() => setIsCreateTestOpen(true)}>
                   <BookOpen className="mr-2 h-4 w-4" />
                   Create Test

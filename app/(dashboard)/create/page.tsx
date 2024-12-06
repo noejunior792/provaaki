@@ -86,74 +86,95 @@ export default function CreateTestPage() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <Card className="max-w-2xl mx-auto p-6">
+        <Card className="max-w-5xl mx-auto p-6">
           <h1 className="text-2xl font-bold mb-6">Create New Test</h1>
 
-          <div className="space-y-6">
-            <div className="space-y-2">
-              <Label htmlFor="title">Title</Label>
-              <Input
-                id="title"
-                placeholder="Enter test title"
-                value={formData.title}
-                onChange={handleInputChange}
-              />
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="subject">Subject</Label>
-              <Select
-                onValueChange={(value) => handleSelectChange("subject", value)}
-              >
-                <SelectTrigger>
-                  <SelectValue placeholder="Select subject" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="math">Mathematics</SelectItem>
-                  <SelectItem value="physics">Physics</SelectItem>
-                  <SelectItem value="chemistry">Chemistry</SelectItem>
-                  <SelectItem value="biology">Biology</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="description">Description</Label>
-              <Textarea
-                id="description"
-                placeholder="Provide a description of the test"
-                rows={4}
-                value={formData.description}
-                onChange={handleInputChange}
-              />
-            </div>
-
-            <div className="space-y-2">
-              <Label>Upload Test Images</Label>
-              <div className="border-2 border-dashed rounded-lg p-8 text-center">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Coluna da Esquerda */}
+            <div className="space-y-6">
+              <div className="space-y-2">
+                <Label htmlFor="title">Title</Label>
                 <Input
-                  type="file"
-                  accept="image/*"
-                  multiple
-                  className="hidden"
-                  id="file-upload"
-                  onChange={handleFileChange}
+                  id="title"
+                  placeholder="Enter test title"
+                  value={formData.title}
+                  onChange={handleInputChange}
                 />
-                <Label
-                  htmlFor="file-upload"
-                  className="cursor-pointer flex flex-col items-center"
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="subject">Subject</Label>
+                <Select
+                  onValueChange={(value) => handleSelectChange("subject", value)}
                 >
-                  <ImagePlus className="h-12 w-12 text-muted-foreground mb-4" />
-                  <span className="text-sm font-medium mb-1">
-                    Drop your images here or click to upload
-                  </span>
-                  <span className="text-xs text-muted-foreground">
-                    (Supports: JPG, PNG, PDF)
-                  </span>
-                </Label>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select subject" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="math">Mathematics</SelectItem>
+                    <SelectItem value="physics">Physics</SelectItem>
+                    <SelectItem value="chemistry">Chemistry</SelectItem>
+                    <SelectItem value="biology">Biology</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="description">Description</Label>
+                <Textarea
+                  id="description"
+                  placeholder="Provide a description of the test"
+                  rows={4}
+                  value={formData.description}
+                  onChange={handleInputChange}
+                />
               </div>
             </div>
 
+            {/* Coluna da Direita */}
+            <div className="space-y-6">
+              <div className="space-y-2">
+                <Label>Upload Test Images</Label>
+                <div className="border-2 border-dashed rounded-lg p-8 text-center h-[300px] flex flex-col items-center justify-center">
+                  <Input
+                    type="file"
+                    accept="image/*"
+                    multiple
+                    className="hidden"
+                    id="file-upload"
+                    onChange={handleFileChange}
+                  />
+                  <Label
+                    htmlFor="file-upload"
+                    className="cursor-pointer flex flex-col items-center"
+                  >
+                    <ImagePlus className="h-12 w-12 text-muted-foreground mb-4" />
+                    <span className="text-sm font-medium mb-1">
+                      Drop your images here or click to upload
+                    </span>
+                    <span className="text-xs text-muted-foreground">
+                      (Supports: JPG, PNG, PDF)
+                    </span>
+                  </Label>
+                </div>
+              </div>
+
+              {selectedFiles.length > 0 && (
+                <div className="space-y-2">
+                  <Label>Selected Files</Label>
+                  <div className="bg-muted p-4 rounded-lg">
+                    {selectedFiles.map((file, index) => (
+                      <div key={index} className="text-sm">
+                        {file.name}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+
+          <div className="mt-6">
             <Button onClick={handleSubmit} className="w-full" disabled={isLoading}>
               {isLoading ? (
                 <span>Loading...</span>
